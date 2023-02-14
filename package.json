@@ -2,10 +2,7 @@
   "name": "friendzone",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "projects/*",
-    "packages/*"
-  ],
+  "workspaces": ["packages/*", "projects/*"],
   "scripts": {
     "app": "cd projects/mobile && yarn dev",
     "blog": "turbo run dev --filter blog",
