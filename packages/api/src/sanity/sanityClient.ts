@@ -1,6 +1,6 @@
 import sanityClient from "@sanity/client";
 import ImageUrlBuilder from "@sanity/image-url";
-import { type Image as SImage } from "./trpc";
+import { type Image as SImage } from "../trpc";
 
 const sc = sanityClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,

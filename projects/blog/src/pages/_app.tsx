@@ -9,7 +9,7 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   return (
     <>
       <Head />
-      <ClerkProvider {...pageProps}>
+      <ClerkProvider __unstable_invokeMiddlewareOnAuthStateChange={false} {...pageProps}>
         <div className="flex h-full w-full flex-col items-center justify-center overflow-scroll bg-gradient-to-tr from-green-400 to-rose-400">
           <Component {...pageProps} />
         </div>

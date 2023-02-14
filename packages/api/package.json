@@ -10,9 +10,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "db": "*",
     "@trpc/client": "^10.1.0",
     "@trpc/server": "^10.1.0",
+    "db": "*",
+    "dotenv": "^16.0.3",
     "superjson": "^1.9.1",
     "zod": "^3.18.0"
   },
