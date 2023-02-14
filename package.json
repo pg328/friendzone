@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "projects/*",
     "packages/*"
   ],
   "scripts": {
-    "app": "cd apps/fz && yarn dev",
+    "app": "cd projects/mobile && yarn dev",
     "blog": "turbo run dev --filter blog",
     "build": "turbo run build",
     "dev": "turbo run dev",
