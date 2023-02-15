@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         </div>
       </SignedIn>
 
-      <main className="flex h-screen flex-col items-center  text-white">
+      <main className="flex h-full w-full flex-col items-center  text-white">
         <div className="container mt-72 flex flex-col items-center justify-center gap-12 px-4 py-8">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             fr<span className="text-green-400">i</span>endz

@@ -1,8 +1,8 @@
 import type { inferProcedureOutput } from "@trpc/server";
 import type { AppRouter } from "api";
 import React from 'react'
-import Image from "next/image";
-import { urlFor } from "api/src/sanity/sanityClient";
+import Image from "components/SanityImage";
+import { builder, urlFor } from "api/src/sanity/sanityClient";
 
 type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
 
@@ -12,8 +12,8 @@ const PostCard: React.FC<Post> = (post) => {
       <a href={`/posts/${post.slug.current}`}>
         <div className="relative h-3/5 w-full overflow-hidden rounded-t-2xl">
           <Image
-            src={urlFor(post.mainImage).url()}
-            fill
+            asset={post.mainImage}
+            fit={'object-cover'}
             alt={`Image for article titled: ${post.title}`}
           />
         </div>
@@ -30,8 +30,7 @@ const PostCard: React.FC<Post> = (post) => {
             <span className="font-light">{post.author.name}</span>
             <div className="relative h-8 w-8 overflow-hidden rounded-full">
               <Image
-                src={urlFor(post.author.image).url()}
-                fill
+                asset={post.author.image}
                 alt={`Image for article titled: ${post.title}`}
               />
             </div>

@@ -9,7 +9,7 @@ const sc = sanityClient({
   useCdn: false,
 });
 
-const builder = ImageUrlBuilder(sc);
+export const builder = ImageUrlBuilder(sc);
 
 export const urlFor = (source: SImage) => builder.image(source);
 

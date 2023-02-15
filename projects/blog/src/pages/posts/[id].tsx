@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { trpc } from "../../utils/trpc";
-import { urlFor } from "api/src/sanity/sanityClient";
-import Image from "next/image";
+import Image from "components/SanityImage";
 import PortableText from "components/PortableText";
 
 const Post = () => {
@@ -14,50 +13,52 @@ const Post = () => {
   if (isLoading || !post) return <p>Loading...</p>;
   console.log({ post });
 
+
+  // Outermost div *CANNOT* be flex, it breaks everything
   return (
-    <>
-      <div className="h-1/12 fixed top-5 right-5 z-10 m-5 w-60">
-        <div className="flex w-full items-center justify-around rounded-2xl bg-slate-200 p-4">
-          <div className="relative h-20 w-20 overflow-hidden rounded-full">
-            {post && (
-              <Image
-                src={urlFor(post.author.image).url()}
-                sizes="100%"
-                fill
-                alt={`Profile picture for author: ${post.author.name}`}
-              />
-            )}
+    <div className="h-full w-full py-12 overflow-y-scroll overflow-x-hidden">
+      <main className="bg-gray-200 mx-5 rounded-xl p-5 2xl:mx-80 2xl:p-40">
+        <div className="flex w-full justify-center">
+          <h1 className="text-6xl text-center md:text-9xl font-extrabold my-8">{post.title}</h1>
+        </div>
+        <div className="">
+          <div className="flex w-full justify-center">
+            <div className="flex w-3/6 items-center justify-around">
+              <div className="relative mr-4 h-8 w-8 overflow-hidden rounded-full">
+                {post && (
+                  <Image
+                    asset={post.author.image}
+                    fit="object-cover"
+                    alt={`Profile picture for author: ${post.author.name}`}
+                  />
+                )}
+              </div>
+              <div className="flex flex-col items-center justify-around">
+                <span className="font-light whitespace-nowrap">{post.author.name}</span>
+                <span className="font-light">
+                  {new Date(post.publishedAt).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col items-center justify-around">
-            <span className="font-light">{post.author.name}</span>
-            <span className="font-light">
-              {new Date(post.publishedAt).toLocaleDateString()}
-            </span>
+          <div className="flex xl:h-96 lg:h-80 md:h-60 sm:h-40 w-full min-w-[10rem] min-h-[10rem]">
+            <div className="relative m-5 w-full h-auto overflow-hidden rounded-xl">
+              {post && (
+                <Image
+                  asset={post.mainImage}
+                  priority
+                  fit="object-cover"
+                  alt={`Hero Image`}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <main className="z-20 my-60 flex w-9/12 flex-col items-center rounded-3xl bg-white p-40 pt-4 text-white">
-        <div className="flex w-full items-center justify-center">
-          <h1 className="mt-12 text-5xl font-bold">{post.title}</h1>
-        </div>
-        <div className="relative my-12 h-60 w-2/3 border-2 border-gray-300">
-          {post && (
-            <Image
-              src={urlFor(post.mainImage).width(900).height(300).url()}
-              sizes="100%"
-              priority={true}
-              fill
-              alt={`Hero Image`}
-            />
-          )}
-        </div>
-        <PortableText text={post.body} />
-        <PortableText text={post.body} />
-        <PortableText text={post.body} />
-        <PortableText text={post.body} />
-        <PortableText text={post.body} />
+        <article>
+          <PortableText text={post.body} />
+        </article>
       </main>
-    </>
+    </div>
   );
 };
 
