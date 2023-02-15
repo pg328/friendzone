@@ -3,7 +3,7 @@ import PostCard from "components/PostCard";
 
 const PostCards: React.FC<{ data: Post[] }> = ({ data }) => (
   <section>
-    <div className="flex flex-col gap-10 md:flex-row">
+    <div className="flex flex-wrap flex-col gap-10 md:flex-row">
       {data
         ?.sort((post1: Post, post2: Post) => {
           const date1 = new Date(post1.publishedAt);

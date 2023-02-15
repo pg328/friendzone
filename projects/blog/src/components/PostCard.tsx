@@ -2,13 +2,12 @@ import type { inferProcedureOutput } from "@trpc/server";
 import type { AppRouter } from "api";
 import React from 'react'
 import Image from "components/SanityImage";
-import { builder, urlFor } from "api/src/sanity/sanityClient";
 
 type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
 
 const PostCard: React.FC<Post> = (post) => {
   return (
-    <article className="h-64 w-64 flex-col rounded-2xl  shadow-lg shadow-gray-800 hover:scale-110 transition-all">
+    <article className="h-64 w-64 flex-col md:h-80 md:w-80 2xl:h-[30rem] 2xl:w-[40rem] rounded-2xl  shadow-lg shadow-gray-800 hover:scale-110 transition-all">
       <a href={`/posts/${post.slug.current}`}>
         <div className="relative h-3/5 w-full overflow-hidden rounded-t-2xl">
           <Image
