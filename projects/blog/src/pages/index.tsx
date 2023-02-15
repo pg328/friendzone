@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 
       <main className="flex h-full w-full flex-col items-center  text-white">
         <div className="container mt-72 flex flex-col items-center justify-center gap-12 px-4 py-8">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+          <h1 className="text-5xl lg:text-9xl font-extrabold tracking-tighter transition-all sm:text-[5rem]">
             fr<span className="text-green-400">i</span>endz
             <span className="text-rose-700">o</span>ne.
           </h1>
