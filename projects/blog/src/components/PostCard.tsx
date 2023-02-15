@@ -8,7 +8,7 @@ type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
 
 const PostCard: React.FC<Post> = (post) => {
   return (
-    <article className="h-64 w-64 flex-col rounded-2xl  shadow-lg shadow-gray-800">
+    <article className="h-64 w-64 flex-col rounded-2xl  shadow-lg shadow-gray-800 hover:scale-110 transition-all">
       <a href={`/posts/${post.slug.current}`}>
         <div className="relative h-3/5 w-full overflow-hidden rounded-t-2xl">
           <Image
