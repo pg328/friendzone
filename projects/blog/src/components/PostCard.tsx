@@ -33,7 +33,7 @@ const PostCard: React.FC<Post> = (post) => {
               <div className="flex flex-col items-center justify-around lg:text-2xl">
                 <span className="font-light whitespace-nowrap">{post.author.name}</span>
                 <span className="font-thin">
-                  {new Date(post.publishedAt).toLocaleDateString()}
+                  {new Date(post.publishedAt).toDateString()}
                 </span>
               </div>
             </div>

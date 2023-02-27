@@ -2,6 +2,10 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "db-push": {
+      "dependsOn": ["prisma-format"]
+    },
+    "prisma-format": {},
     "twrc#build": {},
     "build": {
       "dependsOn": ["^build"],

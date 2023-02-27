@@ -1,10 +1,13 @@
+import { createProxySSGHelpers } from '@trpc/react-query/ssg'
 import type { NextPage } from "next";
-import { trpc } from "../utils/trpc";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import PostCards from "components/PostCards";
+import { createContextInner } from "api/src/context";
+import { appRouter } from "api";
 
-const Home: NextPage = () => {
-  const { data } = trpc.post.all.useQuery();
+const Home: NextPage<{ posts: any }> = ({ posts }) => {
+
+  console.log({ posts })
 
   return (
     <>
@@ -30,7 +33,7 @@ const Home: NextPage = () => {
             <span className="text-rose-700">o</span>ne.
           </h1>
           <h2 className="text-3xl">a new way to connect.</h2>
-          {data && <PostCards data={data} />}
+          <PostCards data={posts} />
         </div>
       </main>
     </>
@@ -38,3 +41,18 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getStaticProps = async () => {
+
+  const ctx = await createContextInner({ user: null })
+
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx
+  })
+
+  const posts = await ssg.post.all.fetch()
+
+  console.log("POSTS", posts)
+  return { props: { posts } }
+}

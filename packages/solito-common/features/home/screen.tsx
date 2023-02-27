@@ -1,7 +1,7 @@
 import { A, H1, P, Text, TextLink } from 'solito-common/design/typography'
 import { Row } from 'solito-common/design/layout'
 import { View } from 'solito-common/design/view'
-
+import React from 'react'
 import { MotiLink } from 'solito/moti'
 
 export function HomeScreen() {
@@ -10,10 +10,9 @@ export function HomeScreen() {
       <H1>Welcome to Friendzone.</H1>
       <View className="max-w-xl">
         <P className="text-center">
-          Here is a basic starter to show you how you can navigate from one
-          screen to another. This screen uses the same code on Next.js and React
-          Native.
+          By clicking "Log In", you agree with our <P>Terms</P>.
         </P>
+        <P className="text-center">Learn how we process your data in our </P>
         <P className="text-center">
           Solito is made by{' '}
           <A

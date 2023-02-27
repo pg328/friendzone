@@ -8,6 +8,9 @@
     "blog": "turbo run dev --filter blog",
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "db": "yarn prisma-format && yarn db-push",
+    "db-push": "cd packages/db && yarn db-push",
+    "prisma-format": "cd packages/db && prisma format", 
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
