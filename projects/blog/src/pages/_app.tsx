@@ -6,7 +6,6 @@ import { trpc } from "../utils/trpc";
 import Head from "components/Head";
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
-  console.log({ pageProps })
   return (
     <>
       <Head />

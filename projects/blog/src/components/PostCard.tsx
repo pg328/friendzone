@@ -5,6 +5,7 @@ import Image from "components/SanityImage";
 
 type Post = inferProcedureOutput<AppRouter["post"]["all"]>[number];
 
+
 const PostCard: React.FC<Post> = (post) => {
   return (
     <article className="h-64 w-64 flex-col md:h-80 md:w-80 2xl:h-[30rem] 2xl:w-[40rem] rounded-2xl shadow-lg shadow-black hover:scale-110 transition-all">
@@ -33,7 +34,7 @@ const PostCard: React.FC<Post> = (post) => {
               <div className="flex flex-col items-center justify-around lg:text-2xl">
                 <span className="font-light whitespace-nowrap">{post.author.name}</span>
                 <span className="font-thin">
-                  {new Date(post.publishedAt).toDateString()}
+                  {new Intl.DateTimeFormat("en-GB", {}).format(new Date(post.publishedAt))}
                 </span>
               </div>
             </div>

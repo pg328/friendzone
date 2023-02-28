@@ -7,7 +7,6 @@ import { appRouter } from "api";
 
 const Home: NextPage<{ posts: any }> = ({ posts }) => {
 
-  console.log({ posts })
 
   return (
     <>
@@ -53,6 +52,5 @@ export const getStaticProps = async () => {
 
   const posts = await ssg.post.all.fetch()
 
-  console.log("POSTS", posts)
-  return { props: { posts } }
+  return { props: { posts }, revalidate: 60 }
 }
