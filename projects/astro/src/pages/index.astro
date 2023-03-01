@@ -1,6 +1,7 @@
 ---
 // Component Imports
 import Button from '../components/Button.astro';
+import {useSanityClient} from 'astro-sanity';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -12,7 +13,7 @@ import Button from '../components/Button.astro';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
+		<title> Astro + TailwindCSS </title>
 	</head>
 
 	<body>
@@ -21,4 +22,4 @@ import Button from '../components/Button.astro';
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
 		</div>
 	</body>
-</html>
+

@@ -1,22 +1,32 @@
 {
-	"name": "astro",
+	"name": "astro_blog",
+	"private": true,
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
+		"with-env": "dotenv -e ../../.env --",
+		"dev": "yarn with-env astro dev",
+		"start": "yarn with-env astro dev",
+		"build": "yarn with-env astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "yarn with-env astro"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^0.17.2",
+		"@astrojs/preact": "^2.0.3",
 		"@astrojs/tailwind": "^3.0.1",
 		"@types/canvas-confetti": "^1.4.3",
+		"api": "*",
 		"astro": "^2.0.16",
+		"astro-sanity": "^1.1.3",
 		"autoprefixer": "^10.4.7",
 		"canvas-confetti": "^1.5.1",
+		"dotenv": "^16.0.3",
 		"postcss": "^8.4.14",
+		"preact": "^10.6.5",
 		"tailwindcss": "^3.0.24"
+	},
+	"devDependencies": {
+		"typescript": "^4.9.5"
 	}
 }
