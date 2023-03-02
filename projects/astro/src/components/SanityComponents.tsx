@@ -1,4 +1,7 @@
-import SanityImage from "components/SanityImage";
+import { FunctionalComponent, h } from 'preact'
+import { useMemo } from '@preact/compat'
+import { PortableText as SanityPortableText } from '@portabletext/react'
+import { type PortableText as TPortableText } from 'api/src/router/post';
 
 interface ISanityComponents {
   types?: {
@@ -33,13 +36,13 @@ interface ISanityComponents {
 //@TODO: Fix alt tag here!
 
 const components: ISanityComponents = {
-  types: {
-    image: ({ value }: any) => <div className="flex my-8 2xl:h-[40rem] xl:h-96 lg:h-84 md:h-72 sm:h-40 w-full justify-center min-w-[10rem] min-h-[10rem]">
-      <div className="relative m-5 w-4/5 min-w-[10rem] max-w-[90rem] h-auto overflow-hidden rounded-xl">
-        <SanityImage fit="object-cover" asset={value} alt="Image from article" />
-      </div>
-    </div>,
-  },
+  // types: {
+  //   image: ({ value }: any) => <div className="flex my-8 2xl:h-[40rem] xl:h-96 lg:h-84 md:h-72 sm:h-40 w-full justify-center min-w-[10rem] min-h-[10rem]">
+  //     <div className="relative m-5 w-4/5 min-w-[10rem] max-w-[90rem] h-auto overflow-hidden rounded-xl">
+  //       <SanityImage fit="object-cover" asset={value} alt="Image from article" />
+  //     </div>
+  //   </div>,
+  // },
   block: {
     normal: ({ children }: any) => <p className="text-white w-full m-1">{children}</p>,
     blockquote: ({ children }: any) => <div className="text-white my-4 w-full flex items-center justify-evenly italic font-thin">
@@ -72,7 +75,9 @@ const components: ISanityComponents = {
   hardbreak: undefined,
 };
 
-export default components
 
+const PortableText: FunctionalComponent<{ value: TPortableText }> = ({ value }) => <SanityPortableText value={value} components={components} />
+
+export default PortableText
 
 

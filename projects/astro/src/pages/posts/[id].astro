@@ -1,36 +1,46 @@
 ---
 // Component Imports
-import Button from 'components/Button';
 import {useSanityClient} from 'astro-sanity';
-import PostCards from 'components/PostCards.astro';
-import SanityQueries from 'api/src/router/post';
-import z from 'zod';
+import SanityQueries, {type Slugs  } from 'api/src/router/post';
+import PortableText from 'components/SanityComponents'
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 
-// const posts = await useSanityClient().fetch(SanityQueries.all);
-// const all = await useSanityClient().fetch(SanityQueries.slugs);
-// export const getStaticPaths = () => ([{params}])
+export const getStaticPaths = async () => { 
+  const slugs:Slugs = await useSanityClient().fetch(SanityQueries.slugs);
+  return slugs.map(slug=>({params: {id: slug.slug.current}})) 
+}
 
-// const posts = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.params});
-
+const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.params.id});
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title> Astro + TailwindCSS </title>
-	</head>
-
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button client:load buttonText="Welcome to FriendZone!"/>
-      <PostCards client:load data={posts}/>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-
+<body>
+    <div class="h-full w-full py-12 overflow-y-scroll overflow-x-hidden">
+      <main class="bg-gray-900 mx-5 rounded-xl p-5 2xl:mx-80 2xl:p-40">
+        <div class="flex w-full justify-center">
+          <h1 class="text-6xl text-center md:text-9xl font-extrabold my-8 text-white">{post.title}</h1>
+        </div>
+        <div class="">
+          <div class="flex w-full justify-center">
+            <div class="flex w-3/6 items-center justify-around">
+              <div class="relative mr-4 h-8 w-8 overflow-hidden rounded-full">
+              </div>
+              <div class="flex flex-col items-center justify-around">
+                <span class="font-light whitespace-nowrap text-white">{post.author.name}</span>
+                <span class="font-light text-white">
+                  {Intl.DateTimeFormat('en-GB', { dateStyle: "short" }).format(new Date(post.publishedAt))}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex xl:h-96 lg:h-80 md:h-60 sm:h-40 w-full min-w-[10rem] min-h-[10rem]">
+            <div class="relative m-5 w-full h-auto overflow-hidden rounded-xl">
+            </div>
+          </div>
+        </div>
+        <article>
+        <PortableText value={post.body}/> 
+        </article>
+      </main>
+    </div>
+</body>

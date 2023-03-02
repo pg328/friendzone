@@ -15,6 +15,8 @@
 		"@astrojs/mdx": "^0.17.2",
 		"@astrojs/preact": "^2.0.3",
 		"@astrojs/tailwind": "^3.0.1",
+		"@portabletext/react": "^2.0.2",
+		"@preact/compat": "^17.1.2",
 		"@types/canvas-confetti": "^1.4.3",
 		"api": "*",
 		"astro": "^2.0.16",
@@ -31,5 +33,9 @@
 	"devDependencies": {
 		"tsconfig": "*",
 		"typescript": "^4.9.5"
+	},
+	"resolutions": {
+		"react": "yarn:@preact/compat@latest",
+		"react-dom": "yarn:@preact/compat@latest"
 	}
 }

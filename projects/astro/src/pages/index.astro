@@ -8,8 +8,6 @@ import SanityQueries from 'api/src/router/post';
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 const posts = await useSanityClient().fetch(SanityQueries.all);
-console.log({posts})
-
 ---
 
 <html lang="en">
@@ -24,7 +22,7 @@ console.log({posts})
 	<body>
 		<div class="grid place-items-center h-screen content-center">
 			<Button client:load buttonText="Welcome to FriendZone!"/>
-      <PostCards client:load data={posts}/>
+      <PostCards data={posts}/>
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
 		</div>
 	</body>

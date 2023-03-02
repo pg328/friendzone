@@ -1,11 +1,12 @@
-import {
-  router,
-  publicProcedure,
-  type PostType,
-  type PostTypeWithBody,
-} from "../trpc";
 import { z } from "zod";
-import SanityClient from "../sanity/sanityClient";
+
+const ZImage = z.object({
+  "_type": z.string(),
+  "asset": z.object({
+    "_ref": z.string(),
+    "_type": z.string()
+  })
+})
 
 
 const ZSlug = z.object({
@@ -15,31 +16,44 @@ const ZSlug = z.object({
 
 const ZSlugs = z.array(ZSlug)
 
-type Slugs = z.infer<typeof ZSlugs>
-
 const ZPost = z.object({
   _id: z.string(),
   publishedAt: z.date(),
-  // author: {
-  // name: z.string(),
-  // image: ZImage
-  // },
-  // mainImage: ZImage,
+  author: z.object({
+    name: z.string(),
+    image: ZImage,
+  }),
+  mainImage: ZImage,
   slug: ZSlug,
   title: z.string()
 })
 
-// const ZPostHasBody = z.object({ body: ZPortableText })
+const ZPortableText = z.array(
+  z.object({
+    _type: z.string(),
+    children: z.array(
+      z.object({
+        marks: z.array(z.string()),
+        text: z.string()
+      })
+    ),
+    markDefs: z.array(z.string()),
+    style: z.string()
+  })
+)
 
-// const ZAll = z.array(Post)
+const ZPostHasBody = z.object({ body: ZPortableText })
 
-type All = z.infer<typeof ZAll>
+const ZById = ZPost.merge(ZPostHasBody)
 
-export enum SanityQueries {
+const ZAll = z.array(ZPost)
 
-}
+export type PortableText = z.infer<typeof ZPortableText>
+export type All = z.infer<typeof ZAll>
+export type ById = z.infer<typeof ZById>
+export type Slugs = z.infer<typeof ZSlugs>
 
-export const sanityQueries = {
+export const SanityQueries = {
 
   slugs: `*[_type=="post"]{
     _id,
@@ -76,4 +90,4 @@ export const sanityQueries = {
 `
 }
 
-export default sanityQueries
+export default SanityQueries
