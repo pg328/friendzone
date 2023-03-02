@@ -5,7 +5,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"with-env": "dotenv -e ../../.env --",
-		"dev": "yarn with-env astro dev",
+		"dev": "PORT=3000 yarn with-env astro dev",
 		"start": "yarn with-env astro dev",
 		"build": "yarn with-env astro build",
 		"preview": "astro preview",
@@ -24,9 +24,12 @@
 		"dotenv": "^16.0.3",
 		"postcss": "^8.4.14",
 		"preact": "^10.6.5",
-		"tailwindcss": "^3.0.24"
+		"tailwindcss": "^3.0.24",
+		"twrc": "*",
+		"zod": "^3.20.6"
 	},
 	"devDependencies": {
+		"tsconfig": "*",
 		"typescript": "^4.9.5"
 	}
 }

@@ -1,3 +1,8 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "extends": "../../tsconfig.json",
+  "exclude": [],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+  },
 }

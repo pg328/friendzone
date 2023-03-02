@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "with-env": "dotenv -e ../../.env --",
-    "dev": "PORT=3000 yarn with-env next dev",
     "build": "yarn with-env next build",
     "clean": "rm -rf .next .turbo node_modules",
     "start": "next start",

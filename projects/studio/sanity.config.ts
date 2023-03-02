@@ -1,18 +1,5 @@
-import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemas'
+import { defineConfig } from 'sanity'
+import { sanityConfigObject } from 'api/src/sanity/sanity.config'
 
-export default defineConfig({
-  name: 'default',
-  title: 'FriendZone',
 
-  projectId: 'q7cszao0',
-  dataset: 'production',
-
-  plugins: [deskTool(), visionTool()],
-
-  schema: {
-    types: schemaTypes,
-  },
-})
+export default defineConfig(sanityConfigObject)

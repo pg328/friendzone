@@ -3,12 +3,43 @@ import {
   publicProcedure,
   type PostType,
   type PostTypeWithBody,
-  Slug,
 } from "../trpc";
 import { z } from "zod";
 import SanityClient from "../sanity/sanityClient";
 
-const queries = {
+
+const ZSlug = z.object({
+  _id: z.string(),
+  slug: z.object({ current: z.string() })
+})
+
+const ZSlugs = z.array(ZSlug)
+
+type Slugs = z.infer<typeof ZSlugs>
+
+const ZPost = z.object({
+  _id: z.string(),
+  publishedAt: z.date(),
+  // author: {
+  // name: z.string(),
+  // image: ZImage
+  // },
+  // mainImage: ZImage,
+  slug: ZSlug,
+  title: z.string()
+})
+
+// const ZPostHasBody = z.object({ body: ZPortableText })
+
+// const ZAll = z.array(Post)
+
+type All = z.infer<typeof ZAll>
+
+export enum SanityQueries {
+
+}
+
+export const sanityQueries = {
 
   slugs: `*[_type=="post"]{
     _id,
@@ -45,16 +76,4 @@ const queries = {
 `
 }
 
-
-export const postRouter = router({
-
-  all: publicProcedure
-    .query(async () => (await SanityClient.fetch(queries.all) as PostType[])),
-
-  byId: publicProcedure
-    .input(z.string())
-    .query(async ({ input: SLUG }) => (await SanityClient.fetch(queries.byId, { SLUG })) as PostTypeWithBody),
-
-  slugs: publicProcedure
-    .query(async () => (await SanityClient.fetch(queries.slugs)) as { _id: string; slug: Slug; }[]),
-});
+export default sanityQueries

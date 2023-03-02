@@ -4,11 +4,16 @@ import Button from 'components/Button';
 import {useSanityClient} from 'astro-sanity';
 import PostCards from 'components/PostCards.astro';
 import SanityQueries from 'api/src/router/post';
+import z from 'zod';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
-const posts = await useSanityClient().fetch(SanityQueries.all);
-console.log({posts})
+
+// const posts = await useSanityClient().fetch(SanityQueries.all);
+// const all = await useSanityClient().fetch(SanityQueries.slugs);
+// export const getStaticPaths = () => ([{params}])
+
+// const posts = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.params});
 
 ---
 

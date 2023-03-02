@@ -1,0 +1,23 @@
+---
+import { PostType as Post, PostType } from "api/src/trpc";
+import PostCard from "components/PostCard.astro";
+
+const {data} = Astro.props
+const sortFunction = (post1: Post, post2: Post) => {
+          const date1 = new Date(post1.publishedAt);
+          const date2 = new Date(post2.publishedAt);
+          if (date1 <= date2) return 1;
+          return -1;
+        }
+
+---
+
+  <section>
+    <div class="flex flex-wrap flex-col justify-center gap-10 2xl:gap-20 md:flex-row">
+      {data
+        ?.sort(sortFunction)
+        .map((post:PostType) => (
+          <PostCard key={post._id} {...post} />
+        ))}
+    </div>
+  </section>
