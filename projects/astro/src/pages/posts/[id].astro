@@ -16,9 +16,9 @@ const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.param
 ---
 <body>
     <div class="h-full w-full py-12 overflow-y-scroll overflow-x-hidden">
-      <main class="bg-gray-900 mx-5 rounded-xl p-5 2xl:mx-80 2xl:p-40">
+      <main class="dark:bg-gray-900 bg-gray-50 mx-5 rounded-xl p-5 2xl:mx-80 2xl:p-40 dark:text-white text-black">
         <div class="flex w-full justify-center">
-          <h1 class="text-6xl text-center md:text-9xl font-extrabold my-8 text-white">{post.title}</h1>
+          <h1 class="text-6xl text-center md:text-9xl font-extrabold my-8">{post.title}</h1>
         </div>
         <div class="">
           <div class="flex w-full justify-center">
@@ -26,8 +26,8 @@ const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.param
               <div class="relative mr-4 h-8 w-8 overflow-hidden rounded-full">
               </div>
               <div class="flex flex-col items-center justify-around">
-                <span class="font-light whitespace-nowrap text-white">{post.author.name}</span>
-                <span class="font-light text-white">
+                <span class="font-light whitespace-nowrap ">{post.author.name}</span>
+                <span class="font-light ">
                   {Intl.DateTimeFormat('en-GB', { dateStyle: "short" }).format(new Date(post.publishedAt))}
                 </span>
               </div>

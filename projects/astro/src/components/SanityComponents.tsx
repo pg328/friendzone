@@ -1,7 +1,7 @@
-import { FunctionalComponent, h } from 'preact'
-import { useMemo } from '@preact/compat'
 import { PortableText as SanityPortableText } from '@portabletext/react'
 import { type PortableText as TPortableText } from 'api/src/router/post';
+import { FC } from 'react';
+import { urlFor } from 'api/src/sanity/sanityClient'
 
 interface ISanityComponents {
   types?: {
@@ -36,25 +36,25 @@ interface ISanityComponents {
 //@TODO: Fix alt tag here!
 
 const components: ISanityComponents = {
-  // types: {
-  //   image: ({ value }: any) => <div className="flex my-8 2xl:h-[40rem] xl:h-96 lg:h-84 md:h-72 sm:h-40 w-full justify-center min-w-[10rem] min-h-[10rem]">
-  //     <div className="relative m-5 w-4/5 min-w-[10rem] max-w-[90rem] h-auto overflow-hidden rounded-xl">
-  //       <SanityImage fit="object-cover" asset={value} alt="Image from article" />
-  //     </div>
-  //   </div>,
-  // },
-  block: {
-    normal: ({ children }: any) => <p className="text-white w-full m-1">{children}</p>,
-    blockquote: ({ children }: any) => <div className="text-white my-4 w-full flex items-center justify-evenly italic font-thin">
-      <div className="text-white bg-gray-400 w-2 h-20" />
-      <blockquote className="text-white text-2xl w-11/12">{children}</blockquote>
+  types: {
+    image: ({ value }: any) => <div className="flex my-8 2xl:h-[40rem] xl:h-96 lg:h-84 md:h-72 sm:h-40 w-full justify-center min-w-[10rem] min-h-[10rem]">
+      <div className="relative m-5 aspect-auto overflow-hidden rounded-xl">
+        <img className="object-contain" src={urlFor(value).url()} alt="Image from article" />
+      </div>
     </div>,
-    h1: ({ children }: any) => <h1 className="text-white md:text-7xl text-5xl font-extrabold my-12 w-full" >{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-white md:text-6xl text-4xl font-bold my-12 w-full">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-white md:text-4xl text-3xl font-bold my-8 w-full">{children}</h3>,
-    h4: ({ children }: any) => <h4 className="text-white md:text-3xl text-2xl font-bold my-4 w-full">{children}</h4>,
-    h5: ({ children }: any) => <h5 className="text-white md:text-2xl text-xl font-bold m-2 w-full">{children}</h5>,
-    h6: ({ children }: any) => <h6 className="text-white md:text-xl text-lg font-bold m-1 w-full">{children}</h6>,
+  },
+  block: {
+    normal: ({ children }: any) => <p className="w-full m-1">{children}</p>,
+    blockquote: ({ children }: any) => <div className="my-4 w-full flex items-center justify-evenly italic font-thin">
+      <div className="bg-gray-400 w-2 h-20" />
+      <blockquote className="text-2xl w-11/12">{children}</blockquote>
+    </div>,
+    h1: ({ children }: any) => <h1 className="md:text-7xl text-5xl font-extrabold my-12 w-full" >{children}</h1>,
+    h2: ({ children }: any) => <h2 className="md:text-6xl text-4xl font-bold my-12 w-full">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="md:text-4xl text-3xl font-bold my-8 w-full">{children}</h3>,
+    h4: ({ children }: any) => <h4 className="md:text-3xl text-2xl font-bold my-4 w-full">{children}</h4>,
+    h5: ({ children }: any) => <h5 className="md:text-2xl text-xl font-bold m-2 w-full">{children}</h5>,
+    h6: ({ children }: any) => <h6 className="md:text-xl text-lg font-bold m-1 w-full">{children}</h6>,
   },
   marks: {
     em: ({ children }: any) => <em className="w-full">{children}</em>,
@@ -76,7 +76,7 @@ const components: ISanityComponents = {
 };
 
 
-const PortableText: FunctionalComponent<{ value: TPortableText }> = ({ value }) => <SanityPortableText value={value} components={components} />
+const PortableText: FC<{ value: TPortableText }> = ({ value }) => <SanityPortableText value={value} components={components} />
 
 export default PortableText
 

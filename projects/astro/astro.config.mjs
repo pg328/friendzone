@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import sanity from 'astro-sanity'
 import sanityConfig from 'api/src/sanity/sanity.config'
-import preact from '@astrojs/preact';
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +11,6 @@ export default defineConfig({
     mdx(), 
     tailwind(), 
     sanity(sanityConfig),
-    preact({compat: true})
+    react()
   ],
 });
