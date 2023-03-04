@@ -20,4 +20,5 @@ export const sanityConfigObject = {
   },
 }
 
+
 export default defineConfig(sanityConfigObject)
