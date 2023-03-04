@@ -41,7 +41,7 @@ const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG});
               </div>
             </div>
           </div>
-        <div class="aspect-video"> <img src={urlFor(post.mainImage).url()}/></div>
+        <img src={urlFor(post.mainImage).size(772, 514).auto('format').url()}/>
         </div>
         <article>
         <PortableText value={post.body}/> 

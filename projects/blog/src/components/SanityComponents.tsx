@@ -77,7 +77,10 @@ const components: ISanityComponents = {
 
 const c2 = {
   types: {
-    image: ({ value }: any) => <img src={urlFor(value).fit('crop').url()} />,
+    image: ({ value }: any) => {
+      console.log({ value })
+      return <img src={urlFor(value).size(772, 514).auto('format').url()} />
+    },
   },
 }
 
