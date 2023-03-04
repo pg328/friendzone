@@ -1,0 +1,28 @@
+---
+// Component Imports
+import Button from 'components/Button';
+import {useSanityClient} from 'astro-sanity';
+import PostCards from 'components/PostCards.astro';
+import SanityQueries from 'api/src/router/post';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+const posts = await useSanityClient().fetch(SanityQueries.all);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>FriendZone.</title>
+	</head>
+
+	<body>
+		<div class="grid place-items-center h-screen content-center">
+			<Button client:load buttonText="Welcome to FriendZone!"/>
+      <PostCards data={posts}/>
+		</div>
+	</body>
+

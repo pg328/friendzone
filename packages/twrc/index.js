@@ -1,14 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}", "./src/_app.tsx", "./src/index.tsx"],
+  content: ["./src/**/*.{ts,tsx,astro,mdx}","./src/*.{ts,tsx,astro,mdx}", "./src/_app.tsx" ],
   theme: {
     extend: {
       colors: {
         gray: {
-          200: "#010101"
+          200: "#9f2937"
         }
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 };
