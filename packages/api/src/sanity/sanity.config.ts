@@ -6,12 +6,14 @@ import { schemaTypes } from './schemas'
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID! || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
 const dataset = process.env.SANITY_STUDIO_DATASET! || process.env.NEXT_PUBLIC_SANITY_DATASET!
+const apiVersion = process.env.SANITY_API_VERSION!
 
 export const sanityConfigObject = {
   title: "FriendZone",
   projectId,
+  useCdn: true,
+  apiVersion,
   dataset,
-  useCDN: false,
   plugins: [deskTool(), visionTool()],
   schema: {
     types: schemaTypes,

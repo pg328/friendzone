@@ -1,0 +1,44 @@
+---
+// Component Imports
+import {useSanityClient} from 'astro-sanity';
+import SanityQueries, {type Slugs  } from 'api/src/router/post';
+import PortableText from 'components/SanityComponents'
+import { urlFor } from 'api/src/sanity/sanityClient';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+
+export const getStaticPaths = async () => { 
+  const slugs:Slugs = await useSanityClient().fetch(SanityQueries.slugs);
+  return slugs.map(slug=>({params: {id: slug.slug.current}})) 
+}
+
+const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.params.id});
+---
+<body class="bg-red-200">
+    <div class="h-full w-full py-12 overflow-y-scroll overflow-x-hidden flex justify-center">
+      <main class="dark:bg-black prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl prose-img:rounded-xl bg-gray-50 rounded-xl p-5 dark:prose-invert w-3/5">
+        <div class="flex w-full justify-center">
+          <h1 class="">{post.title}</h1>
+        </div>
+        <div class="">
+          <div class="flex w-full justify-center">
+            <div class="flex w-3/6 items-center justify-around">
+              <div class="relative mr-4 h-8 w-8 overflow-hidden rounded-full">
+              </div>
+              <div class="flex flex-col items-center justify-around">
+                <span class="font-light whitespace-nowrap ">{post.author.name}</span>
+                <span class="font-light ">
+                  {Intl.DateTimeFormat('en-GB', { dateStyle: "short" }).format(new Date(post.publishedAt))}
+                </span>
+              </div>
+            </div>
+          </div>
+        <div class="aspect-video"> <img src={urlFor(post.mainImage).url()}/></div>
+        </div>
+        <article>
+        <PortableText value={post.body}/> 
+        </article>
+      </main>
+    </div>
+</body>

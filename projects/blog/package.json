@@ -1,46 +1,40 @@
 {
-  "name": "blog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "with-env": "dotenv -e ../../.env --",
-    "build": "yarn with-env next build",
-    "clean": "rm -rf .next .turbo node_modules",
-    "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "api": "*",
-    "db": "*",
-    "twrc": "*",
-    "@clerk/nextjs": "^4.8.2",
-    "@portabletext/react": "^2.0.1",
-    "@sanity/client": "^4.0.1",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.3.1",
-    "@tanstack/react-query": "^4.16.1",
-    "@trpc/client": "^10.1.0",
-    "@trpc/next": "^10.1.0",
-    "@trpc/react-query": "^10.1.0",
-    "@trpc/server": "^10.1.0",
-    "next": "^13.1.6",
-    "next-sanity": "^4.1.2",
-    "next-sanity-image": "^5.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "styled-components": "^5.3.6",
-    "zod": "^3.18.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.28.0",
-    "eslint-config-next": "13.1.6",
-    "postcss": "^8.4.19",
-    "tailwindcss": "^3.2.4",
-    "typescript": "^4.9.3"
-  }
+	"name": "blog",
+	"private": true,
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"with-env": "dotenv -e ../../.env --",
+		"dev": "PORT=3000 yarn with-env astro dev",
+		"start": "yarn with-env astro dev",
+		"build": "yarn with-env astro build",
+		"preview": "astro preview",
+		"astro": "yarn with-env astro"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^0.17.2",
+		"@astrojs/react": "^2.0.2",
+		"@astrojs/tailwind": "^3.0.1",
+		"@portabletext/react": "^2.0.2",
+		"@types/canvas-confetti": "^1.4.3",
+		"@types/react": "^18.0.21",
+		"@types/react-dom": "^18.0.6",
+		"api": "*",
+		"astro": "^2.0.16",
+		"astro-sanity": "^1.1.3",
+		"autoprefixer": "^10.4.7",
+		"canvas-confetti": "^1.5.1",
+		"dotenv": "^16.0.3",
+		"postcss": "^8.4.14",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"tailwindcss": "^3.0.24",
+		"twrc": "*",
+		"zod": "^3.20.6"
+	},
+	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.9",
+		"tsconfig": "*",
+		"typescript": "^4.9.5"
+	}
 }
