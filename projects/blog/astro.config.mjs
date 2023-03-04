@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sanity from 'astro-sanity'
 import sanityConfig from 'api/src/sanity/sanity.config'
 import react from '@astrojs/react'
+import vercel from '@astrojs/vercel/serverless'
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +12,11 @@ export default defineConfig({
     mdx(), 
     tailwind(), 
     sanity(sanityConfig),
-    react()
+    react(),
   ],
+  output: 'server',
+  adapter: vercel({
+    analytics: true,
+    includeFiles: ['../../packages/api/src/sanity/sanity.config.ts']
+  })
 });

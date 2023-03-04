@@ -8,12 +8,19 @@ import { urlFor } from 'api/src/sanity/sanityClient';
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 
-export const getStaticPaths = async () => { 
-  const slugs:Slugs = await useSanityClient().fetch(SanityQueries.slugs);
-  return slugs.map(slug=>({params: {id: slug.slug.current}})) 
-}
+const {id: SLUG} = Astro.params
 
-const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG:Astro.params.id});
+console.warn({SLUG})
+
+const slugs:Slugs = await useSanityClient().fetch(SanityQueries.slugs);
+
+const page = slugs.find((slug)=>slug.slug.current === SLUG)
+
+console.warn({slugs})
+
+if (!page) return Astro.redirect("/404")
+
+const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG});
 ---
 <body class="bg-red-200">
     <div class="h-full w-full py-12 overflow-y-scroll overflow-x-hidden flex justify-center">
