@@ -22,7 +22,16 @@ if (!page) return Astro.redirect("/404")
 
 const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG});
 ---
-<body class="bg-red-200">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{post.title}</title>
+  </head>
+
+  <body class="bg-red-200">
     <div class="h-full w-full py-12 overflow-y-scroll overflow-x-hidden flex justify-center">
       <main class="dark:bg-black prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl prose-img:rounded-xl bg-gray-50 rounded-xl p-5 dark:prose-invert w-3/5">
         <div class="flex w-full justify-center">
@@ -41,11 +50,12 @@ const post = await useSanityClient().fetch(SanityQueries.byId, {SLUG});
               </div>
             </div>
           </div>
-        <img src={urlFor(post.mainImage).size(772, 514).auto('format').url()}/>
+          <img src={urlFor(post.mainImage).size(772, 514).auto('format').url()}/>
         </div>
         <article>
-        <PortableText value={post.body}/> 
+          <PortableText value={post.body}/> 
         </article>
       </main>
     </div>
-</body>
+  </body>
+</html>
