@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Modal from 'modal-react-native-web';\nexport { Modal };","map":{"version":3,"sources":["../src/Modal.web.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,wBAAwB;AAC1C,SAAS,KAAK","sourceRoot":"","sourcesContent":["import Modal from 'modal-react-native-web';\nexport { Modal };\n//# sourceMappingURL=Modal.web.js.map"]},"metadata":{},"sourceType":"module"}
